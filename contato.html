@@ -192,7 +192,7 @@
           Preencha o formulário e nossa equipe entrará em contato em até <strong>1 hora útil</strong>.
         </p>
 
-        <form id="formContatoWeb" novalidate style="background:var(--cinza-bg);border-radius:var(--radius-md);padding:32px;border:1px solid var(--cinza-borda);">
+        <form data-form="contato" novalidate style="background:var(--cinza-bg);border-radius:var(--radius-md);padding:32px;border:1px solid var(--cinza-borda);">
           <div class="form-row">
             <div class="form-group">
               <label for="nome-contato">Nome completo *</label>
@@ -237,10 +237,10 @@
             <textarea id="msg-contato" name="mensagem" placeholder="Descreva sua necessidade, quantidade desejada ou dúvida..." required style="min-height:140px;"></textarea>
           </div>
 
-          <div class="form-group">
-            <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;font-weight:400;color:var(--cinza-medio);cursor:pointer;">
-              <input type="checkbox" id="politica" name="politica" required style="margin-top:4px;cursor:pointer;width:18px;height:18px;opacity:1;position:relative;z-index:10;" />
-              <span>Concordo em receber retorno da Refrimáquinas sobre minha solicitação e aceito os termos de uso dos meus dados conforme a LGPD.</span>
+          <div class="form-group" style="display:flex;align-items:flex-start;gap:10px;">
+            <input type="checkbox" id="politica" name="politica" required style="width:18px;height:18px;margin-top:3px;flex-shrink:0;" />
+            <label for="politica" style="font-size:.82rem;color:var(--cinza-medio);font-weight:400;">
+              Concordo em receber retorno da Refrimáquinas sobre minha solicitação e aceito os termos de uso dos meus dados conforme a LGPD.
             </label>
           </div>
 
@@ -248,57 +248,6 @@
             <i class="fas fa-paper-plane"></i> Enviar Solicitação
           </button>
         </form>
-
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            var form = document.getElementById('formContatoWeb');
-            if (form) {
-              form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Validação simples
-                if (!form.checkValidity()) {
-                  form.reportValidity();
-                  return;
-                }
-
-                var btn = form.querySelector('[type="submit"]');
-                var origText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecionando...';
-                btn.disabled = true;
-
-                // Captura dos dados
-                var nome = document.getElementById('nome-contato').value.trim();
-                var empresa = document.getElementById('empresa-contato').value.trim();
-                var email = document.getElementById('email-contato').value.trim();
-                var telefone = document.getElementById('tel-contato').value.trim();
-                var assuntoSelect = document.getElementById('assunto-contato');
-                var assunto = assuntoSelect.options[assuntoSelect.selectedIndex].text;
-                var produto = document.getElementById('produto-contato').value.trim();
-                var mensagem = document.getElementById('msg-contato').value.trim();
-
-                // Montagem da mensagem formatada para o WhatsApp
-                var texto = "*NOVA SOLICITAÇÃO REALIZADA NO SITE*\n\n";
-                texto += "👤 *Nome:* " + nome + "\n";
-                if (empresa) texto += "🏢 *Empresa:* " + empresa + "\n";
-                texto += "✉️ *E-mail:* " + email + "\n";
-                texto += "📱 *Telefone/WhatsApp:* " + telefone + "\n";
-                texto += "📌 *Assunto:* " + assunto + "\n";
-                if (produto) texto += "🛒 *Produto(s) de interesse:* " + produto + "\n";
-                texto += "\n💬 *Mensagem:*\n" + mensagem;
-
-                var numeroWa = "556334151900";
-                var url = "https://wa.me/" + numeroWa + "?text=" + encodeURIComponent(texto);
-                
-                setTimeout(function() {
-                  btn.innerHTML = origText;
-                  btn.disabled = false;
-                  window.location.href = url;
-                }, 800);
-              });
-            }
-          });
-        </script>
 
 
       </main>
