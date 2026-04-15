@@ -3,6 +3,7 @@
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const pageTransitionDuration = 180;
 
   /* ---- Navbar: scroll effect ---- */
   const navbar = document.querySelector('.navbar');
@@ -163,6 +164,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ---- TransiÃ§Ã£o suave entre pÃ¡ginas internas ---- */
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a');
+    if (!link || e.defaultPrevented) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    const rawHref = link.getAttribute('href');
+    if (!rawHref) return;
+    if (rawHref.startsWith('#') || /^(mailto:|tel:|javascript:)/i.test(rawHref)) return;
+    if (link.target && link.target !== '_self') return;
+    if (link.hasAttribute('download')) return;
+
+    const nextUrl = new URL(link.href, window.location.href);
+    const sameOrigin = nextUrl.origin === window.location.origin;
+    const samePageAnchor = nextUrl.pathname === window.location.pathname && nextUrl.hash;
+
+    if (!sameOrigin || samePageAnchor) return;
+
+    e.preventDefault();
+    document.body.classList.add('page-is-leaving');
+    window.setTimeout(() => {
+      window.location.href = nextUrl.href;
+    }, pageTransitionDuration);
+  });
+
+});
+
+window.addEventListener('pageshow', () => {
+  document.body.classList.remove('page-is-leaving');
 });
 
 /* ---- CSS para animações via JS ---- */

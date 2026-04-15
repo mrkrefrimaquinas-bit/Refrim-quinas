@@ -48,8 +48,31 @@
     }
     .btn-whatsapp-full:hover { background: rgba(255,255,255,.88); transform: translateY(-2px); }
 
-    .contact-two-col { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; }
-    @media (max-width: 900px) { .contact-two-col { grid-template-columns: 1fr; } }
+    .contact-two-col { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(28px, 4vw, 48px); align-items: start; }
+
+    @media (max-width: 900px) {
+      .contact-two-col { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .horario-grid { grid-template-columns: 1fr; }
+      .horario-item,
+      .horario-item:nth-child(even),
+      .horario-item[style*="grid-column"] {
+        border-right: none !important;
+      }
+      .horario-item:nth-last-child(2) {
+        border-bottom: 1px solid var(--cinza-borda);
+      }
+      .horario-item {
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn-whatsapp-full {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -98,9 +121,9 @@
 </header>
 
 <!-- ========== CANAIS RÁPIDOS ========== -->
-<div style="background:var(--azul-primario);padding:24px 0;" aria-label="Canais de atendimento">
+<div class="quick-contact-strip" aria-label="Canais de atendimento">
   <div class="container">
-    <div class="benefits-strip-inner" style="justify-content: center; gap: 60px;">
+    <div class="benefits-strip-inner contact-quick-links">
       <a href="https://wa.me/5563992940367" target="_blank" rel="noopener" class="benefit-item" style="text-decoration:none;">
         <i class="fab fa-whatsapp" style="font-size:1.4rem;"></i> WhatsApp: (63) 99294-0367
       </a>
@@ -192,7 +215,7 @@
           Preencha o formulário e nossa equipe entrará em contato em até <strong>1 hora útil</strong>.
         </p>
 
-        <form data-form="contato" novalidate style="background:var(--cinza-bg);border-radius:var(--radius-md);padding:32px;border:1px solid var(--cinza-borda);">
+        <form id="formContatoWeb" class="contact-form-card" novalidate>
           <div class="form-row">
             <div class="form-group">
               <label for="nome-contato">Nome completo *</label>
@@ -237,10 +260,10 @@
             <textarea id="msg-contato" name="mensagem" placeholder="Descreva sua necessidade, quantidade desejada ou dúvida..." required style="min-height:140px;"></textarea>
           </div>
 
-          <div class="form-group" style="display:flex;align-items:flex-start;gap:10px;">
-            <input type="checkbox" id="politica" name="politica" required style="width:18px;height:18px;margin-top:3px;flex-shrink:0;" />
-            <label for="politica" style="font-size:.82rem;color:var(--cinza-medio);font-weight:400;">
-              Concordo em receber retorno da Refrimáquinas sobre minha solicitação e aceito os termos de uso dos meus dados conforme a LGPD.
+          <div class="form-group">
+            <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;font-weight:400;color:var(--cinza-medio);cursor:pointer;">
+              <input type="checkbox" id="politica" name="politica" required style="margin-top:4px;cursor:pointer;width:18px;height:18px;opacity:1;position:relative;z-index:10;" />
+              <span>Concordo em receber retorno da Refrimáquinas sobre minha solicitação e aceito os termos de uso dos meus dados conforme a LGPD.</span>
             </label>
           </div>
 
@@ -248,6 +271,57 @@
             <i class="fas fa-paper-plane"></i> Enviar Solicitação
           </button>
         </form>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('formContatoWeb');
+            if (form) {
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validação simples
+                if (!form.checkValidity()) {
+                  form.reportValidity();
+                  return;
+                }
+
+                var btn = form.querySelector('[type="submit"]');
+                var origText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecionando...';
+                btn.disabled = true;
+
+                // Captura dos dados
+                var nome = document.getElementById('nome-contato').value.trim();
+                var empresa = document.getElementById('empresa-contato').value.trim();
+                var email = document.getElementById('email-contato').value.trim();
+                var telefone = document.getElementById('tel-contato').value.trim();
+                var assuntoSelect = document.getElementById('assunto-contato');
+                var assunto = assuntoSelect.options[assuntoSelect.selectedIndex].text;
+                var produto = document.getElementById('produto-contato').value.trim();
+                var mensagem = document.getElementById('msg-contato').value.trim();
+
+                // Montagem da mensagem formatada para o WhatsApp
+                var texto = "*NOVA SOLICITAÇÃO REALIZADA NO SITE*\n\n";
+                texto += "👤 *Nome:* " + nome + "\n";
+                if (empresa) texto += "🏢 *Empresa:* " + empresa + "\n";
+                texto += "✉️ *E-mail:* " + email + "\n";
+                texto += "📱 *Telefone/WhatsApp:* " + telefone + "\n";
+                texto += "📌 *Assunto:* " + assunto + "\n";
+                if (produto) texto += "🛒 *Produto(s) de interesse:* " + produto + "\n";
+                texto += "\n💬 *Mensagem:*\n" + mensagem;
+
+                var numeroWa = "556334151900";
+                var url = "https://wa.me/" + numeroWa + "?text=" + encodeURIComponent(texto);
+                
+                setTimeout(function() {
+                  btn.innerHTML = origText;
+                  btn.disabled = false;
+                  window.location.href = url;
+                }, 800);
+              });
+            }
+          });
+        </script>
 
 
       </main>
@@ -265,7 +339,7 @@
       <p class="section-subtitle">Atendemos você em 5 unidades estratégicas nos estados do Tocantins, Pará e Maranhão.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;" class="animate-on-scroll">
+      <div class="store-grid animate-on-scroll">
 
       <!-- Araguaína-TO (Matriz) -->
       <div style="background:var(--branco);border-radius:var(--radius-md);padding:28px;box-shadow:var(--sombra-leve);border-top:4px solid var(--azul-primario);">

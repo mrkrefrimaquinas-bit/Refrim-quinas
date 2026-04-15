@@ -58,6 +58,25 @@
     }
     .cat-section-title { font-size: 1.25rem; font-weight: 800; color: var(--azul-escuro); }
     .cat-section-sub { font-size: .83rem; color: var(--cinza-claro); margin-top: 2px; }
+
+    @media (max-width: 768px) {
+      .search-bar { flex-direction: column; }
+      .search-bar button { width: 100%; }
+      .cat-section-header { align-items: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      .filter-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .cat-section-header {
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .cat-section-title { font-size: 1.05rem; }
+      .cat-section-sub { font-size: .8rem; }
+    }
   </style>
 </head>
 <body>

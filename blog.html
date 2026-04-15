@@ -59,10 +59,16 @@
     }
     .newsletter-form input:focus { outline: none; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .blog-hero-article { grid-template-columns: 1fr; }
+      .blog-featured-img { height: 280px; }
+    }
+
+    @media (max-width: 768px) {
       .blog-featured-img { height: 220px; }
       .newsletter-form { flex-direction: column; }
+      .newsletter-box { padding: 28px 20px; }
+      .blog-tag { width: 100%; text-align: center; }
     }
   </style>
 </head>
