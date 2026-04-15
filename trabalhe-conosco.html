@@ -169,10 +169,10 @@
 <!-- ========== BANCO DE TALENTOS CTA ========== -->
 <section class="section-padding" id="banco-talentos" aria-labelledby="talentos-title" style="background: var(--cinza-bg);">
   <div class="container">
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px;max-width:1200px;margin:0 auto;">
+    <div class="talent-section-layout">
 
       <!-- Texto CTA -->
-      <div style="flex:1 1 450px;min-width:300px;z-index:2;">
+      <div class="talent-section-copy">
         <span class="badge badge-laranja">Banco de Talentos</span>
         <h2 class="section-title" id="talentos-title" style="text-align:left;margin-top:16px;">
           Faça Parte do<br />
@@ -202,15 +202,15 @@
       </div>
 
       <!-- Área Direita (QR Code + Mascote) -->
-      <div style="flex:0 0 auto;display:flex;align-items:flex-end;gap:30px;flex-wrap:wrap;justify-content:center;">
+      <div class="talent-section-media">
         
         <!-- QR Code -->
-        <div style="display:flex;flex-direction:column;align-items:center;gap:20px;padding-bottom:20px;z-index:2;">
+        <div class="talent-section-qr">
           <div style="background:var(--branco);border-radius:var(--radius-md);padding:24px;box-shadow:var(--sombra-media);display:inline-block;">
             <a href="https://forms.gle/qVmtV5wyb45yPp2Z7" target="_blank" rel="noopener">
               <img src="img/qrcode-banco-talentos.png"
                     alt="QR Code para o Banco de Talentos da Refrimáquinas"
-                    style="width:200px;height:200px;display:block;" />
+                    class="talent-section-qr-image" />
             </a>
           </div>
           <p style="color:var(--cinza-claro);font-size:.85rem;text-align:center;max-width:220px;">
@@ -220,8 +220,8 @@
         </div>
 
         <!-- Mascote -->
-        <div style="display:flex;align-items:flex-end;">
-          <img src="img/mascote-bracos-cruzados.png" alt="Mascote Refrimáquinas" style="max-height:500px;object-fit:contain;margin-bottom:-60px;" />
+        <div class="talent-section-mascot">
+          <img src="img/mascote-bracos-cruzados.png" alt="Mascote Refrimáquinas" class="talent-section-mascot-image" />
         </div>
 
       </div>
