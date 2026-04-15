@@ -45,7 +45,6 @@ body {
   overflow-x: hidden;
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
 
 body.page-is-leaving {
@@ -56,12 +55,10 @@ body.page-is-leaving {
   from {
     opacity: 0;
     transform: translateY(10px);
-    filter: blur(2px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
@@ -72,10 +69,9 @@ body.page-is-leaving {
 
   body.page-is-leaving {
     animation: none;
-    transition: opacity .18s ease, transform .18s ease, filter .18s ease;
+    transition: opacity .18s ease, transform .18s ease;
     opacity: 0;
     transform: translateY(-8px);
-    filter: blur(2px);
   }
 }
 
@@ -103,6 +99,10 @@ p, .section-subtitle, .hero-desc, .depo-text, .footer-desc, .blog-card-desc,
 
 .section-padding { padding: var(--section-space) 0; }
 .section-padding-sm { padding: var(--section-space-sm) 0; }
+.defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
 
 .text-center { text-align: center; }
 .text-white  { color: var(--branco); }
@@ -1301,6 +1301,7 @@ footer {
   width: 100%;
   height: auto;
   display: block;
+  background: #dfe8f5;
 }
 
 
@@ -1329,6 +1330,27 @@ footer {
   .blog-grid,
   .mvv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 820px) {
+  .hero {
+    background:
+      linear-gradient(135deg, rgba(10, 42, 74, 0.82) 0%, rgba(13, 61, 110, 0.82) 55%, rgba(21, 101, 192, 0.82) 100%),
+      url('../img/hero-bg-mobile.jpg') center/cover no-repeat;
+  }
+
+  body {
+    animation: none !important;
+  }
+
+  body.page-is-leaving {
+    transition: opacity .14s ease !important;
+    transform: none !important;
+  }
+
+  .whatsapp-float {
+    animation: none;
+  }
 }
 
 @media (max-width: 992px) {

@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
-  <link rel="icon" type="image/png" href="img/icone-whatsapp.png" />
-  <link rel="apple-touch-icon" href="img/icone-whatsapp.png" />
+  <link rel="icon" type="image/png" href="favicon.png?v=2" />
+  <link rel="apple-touch-icon" href="favicon.png?v=2" />
 
   <!-- Estilos -->
   <link rel="stylesheet" href="css/style.css" />
@@ -85,7 +85,7 @@
       </h1>
 
       <p class="hero-desc">
-        Há mais de 18 anos, a Refrimáquinas atende empresas, profissionais e consumidores com produtos de qualidade, atendimento especializado e soluções que geram resultados.
+        Há mais de 18 anos, a Refrimáquinas entrega qualidade, agilidade e atendimento especializado.
       </p>
 
       <div class="hero-cta">
@@ -129,7 +129,7 @@
 </div>
 
 <!-- ========== CATEGORIAS ========== -->
-<section class="section-padding" aria-labelledby="cats-title">
+<section class="section-padding defer-render" aria-labelledby="cats-title">
   <div class="container">
     <div class="text-center">
       <span class="badge">Portfólio Completo</span>
@@ -184,7 +184,7 @@
 </section>
 
 <!-- ========== DIFERENCIAIS ========== -->
-<section class="section-padding diferenciais-bg" aria-labelledby="dif-title">
+<section class="section-padding diferenciais-bg defer-render" aria-labelledby="dif-title">
   <div class="container">
     <div class="text-center">
       <span class="badge badge-laranja">Por que escolher a Refrimáquinas?</span>
@@ -220,7 +220,7 @@
 </section>
 
 <!-- ========== DEPOIMENTOS ========== -->
-<section class="section-padding" aria-labelledby="depo-title">
+<section class="section-padding defer-render" aria-labelledby="depo-title">
   <div class="container">
     <div class="text-center">
       <span class="badge">O que dizem nossos clientes</span>
@@ -270,7 +270,7 @@
 </section>
 
 <!-- ========== MARCAS ========== -->
-<section class="section-padding diferenciais-bg" aria-labelledby="marcas-title">
+<section class="section-padding diferenciais-bg defer-render" aria-labelledby="marcas-title">
   <div class="container text-center">
     <span class="badge">Parceiros de Qualidade</span>
     <h2 class="section-title" id="marcas-title">Marcas que Trabalhamos</h2>
@@ -278,13 +278,13 @@
     <p class="section-subtitle">Representamos os principais fabricantes do setor, garantindo qualidade e procedência em cada produto.</p>
 
     <div class="brands-video-wrap">
-      <video src="img/video-marcas.mp4" autoplay loop muted playsinline class="brands-video"></video>
+      <video src="img/video-marcas.mp4" preload="none" loop muted playsinline class="brands-video" data-autoplay-on-view></video>
     </div>
   </div>
 </section>
 
 <!-- ========== CTA BANNER ========== -->
-<section class="cta-banner" aria-label="Chamada para ação">
+<section class="cta-banner defer-render" aria-label="Chamada para ação">
   <div class="container" style="position:relative;z-index:2">
     <p class="cta-banner-title">Pronto para fazer seu pedido?</p>
     <p class="cta-banner-sub">Fale com nossa equipe agora mesmo e receba um orçamento personalizado. Atendemos via WhatsApp, telefone e e-mail.</p>
