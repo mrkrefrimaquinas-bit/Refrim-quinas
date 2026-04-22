@@ -699,7 +699,8 @@ a.navbar-logo {
   flex-wrap: wrap;
 }
 .cta-banner-btns .btn {
-  flex: 0 1 320px;
+  flex: 0 0 auto;
+  min-width: min(100%, 280px);
   max-width: 100%;
 }
 
@@ -1618,6 +1619,9 @@ footer {
     margin-top: 28px;
     border-radius: var(--radius-md);
     overflow: hidden;
+    aspect-ratio: auto;
+    min-height: 0;
+    background: transparent;
   }
   .structure-video-wrap {
     margin-top: 28px;
@@ -1677,8 +1681,9 @@ footer {
     max-height: 280px;
   }
   .brands-video-wrap {
-    aspect-ratio: 16 / 10;
-    min-height: 200px;
+    aspect-ratio: auto;
+    min-height: 0;
+    background: transparent;
   }
   .structure-video-frame {
     min-height: 0;
