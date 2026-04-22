@@ -139,6 +139,8 @@
     <div class="brands-video-wrap">
       <video src="img/video-marcas.mp4?v=2" preload="none" loop muted playsinline class="brands-video" data-autoplay-on-view></video>
     </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -195,6 +197,7 @@
       </a>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ========== DIFERENCIAIS ========== -->
@@ -229,6 +232,43 @@
         <div class="dif-title">Atendimento Personalizado</div>
         <div class="dif-desc">Mais do que vender, construímos relacionamentos de longo prazo com nossos clientes e parceiros.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VIDEO ESTRUTURA ========== -->
+<section class="section-padding defer-render" aria-labelledby="estrutura-video-title">
+  <div class="container">
+    <div class="text-center">
+      <span class="badge">Nossa Estrutura</span>
+      <h2 class="section-title" id="estrutura-video-title">Conhe&ccedil;a nossa estrutura</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Assista ao v&iacute;deo e veja de perto a estrutura da Refrim&aacute;quinas, nosso estoque e a forma como atendemos cada cliente.</p>
+    </div>
+
+    <div class="structure-video-wrap">
+      <button
+        class="structure-video-player"
+        type="button"
+        data-youtube-id="5EqOcAA538Q"
+        aria-label="Reproduzir video Conheca nossa estrutura da Refrimaquinas">
+        <img
+          class="structure-video-thumb"
+          src="https://i.ytimg.com/vi/5EqOcAA538Q/maxresdefault.jpg"
+          alt="Thumb do video Conheca nossa estrutura da Refrimaquinas"
+          loading="lazy" />
+        <span class="structure-video-overlay" aria-hidden="true"></span>
+        <span class="structure-video-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+        <span class="structure-video-caption">Clique para assistir ao video completo</span>
+      </button>
+      <iframe
+        class="structure-video-frame"
+        src="https://www.youtube.com/embed/5EqOcAA538Q?rel=0&amp;modestbranding=1&amp;playsinline=1"
+        title="Conheça nossa estrutura - Refrimáquinas"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -285,7 +325,14 @@
 
 <!-- ========== CTA BANNER ========== -->
 <section class="cta-banner defer-render" aria-label="Chamada para ação">
-  <div class="container" style="position:relative;z-index:2">
+  <div class="cta-banner-bg" aria-hidden="true">
+      <video class="cta-banner-video" autoplay muted loop playsinline preload="auto">
+        <source src="img/floco.mp4" type="video/mp4" />
+        <source src="img/floco.mov" type="video/quicktime" />
+      </video>
+  </div>
+  <div class="container">
+    <div class="cta-banner-content">
     <p class="cta-banner-title">Pronto para fazer seu pedido?</p>
     <p class="cta-banner-sub">Fale com nossa equipe agora mesmo e receba um orçamento personalizado. Atendemos via WhatsApp, telefone e e-mail.</p>
     <div class="cta-banner-btns">
@@ -296,6 +343,7 @@
         <i class="fas fa-envelope"></i> Enviar Mensagem
       </a>
     </div>
+  </div>
   </div>
 </section>
 

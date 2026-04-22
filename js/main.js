@@ -146,6 +146,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---- Thumb YouTube com clique para carregar ---- */
+  document.querySelectorAll('.structure-video-player').forEach(player => {
+    const wrapper = player.closest('.structure-video-wrap');
+    const iframe = wrapper?.querySelector('.structure-video-frame');
+    const thumb = player.querySelector('.structure-video-thumb');
+    const videoId = player.getAttribute('data-youtube-id');
+    const fallbackThumb = videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : '';
+
+    thumb?.addEventListener('error', () => {
+      if (fallbackThumb && thumb.src !== fallbackThumb) {
+        thumb.src = fallbackThumb;
+      }
+    }, { once: true });
+
+    player.addEventListener('click', () => {
+      if (!iframe) return;
+
+      if (!iframe.src.includes('autoplay=1')) {
+        iframe.src += `${iframe.src.includes('?') ? '&' : '?'}autoplay=1`;
+      }
+
+      iframe.style.display = 'block';
+      player.remove();
+    });
+  });
+
   /* ---- Toast notifications ---- */
   window.showToast = function(msg, tipo = 'info') {
     let toast = document.querySelector('.toast');

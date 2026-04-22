@@ -630,11 +630,44 @@ a.navbar-logo {
 
 /* ---------- CTA Banner ---------- */
 .cta-banner {
-  background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-primario) 100%);
+  background: linear-gradient(135deg, var(--azul-primario) 0%, var(--azul-claro) 100%);
   padding: 72px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+}
+.cta-banner-bg {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: clamp(240px, 42vw, 560px);
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.cta-banner-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 136, 229, .58);
+}
+.cta-banner-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  opacity: .26;
+  filter: saturate(.75) brightness(.95);
+}
+.cta-banner .container {
+  position: relative;
+  z-index: 2;
+}
+.cta-banner-content {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding-inline: clamp(0px, 2vw, 20px);
 }
 .cta-banner::before {
   content: '';
@@ -653,9 +686,22 @@ a.navbar-logo {
 .cta-banner-sub {
   font-size: 1.05rem;
   color: rgba(255,255,255,.78);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 36px;
 }
-.cta-banner-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.cta-banner-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cta-banner-btns .btn {
+  flex: 0 1 320px;
+  max-width: 100%;
+}
 
 /* ---------- Footer ---------- */
 footer {
@@ -1305,6 +1351,97 @@ footer {
   background: #dfe8f5;
 }
 
+.structure-video-wrap {
+  width: 100%;
+  max-width: 1300px;
+  margin: 40px auto 0;
+  position: relative;
+  display: grid;
+  aspect-ratio: 16 / 9;
+  min-height: clamp(260px, 48vw, 720px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.14);
+  background: #000;
+}
+
+.structure-video-player {
+  grid-area: 1 / 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #000;
+  color: var(--branco);
+  display: block;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+}
+
+.structure-video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .45s ease;
+}
+
+.structure-video-player:hover .structure-video-thumb,
+.structure-video-player:focus-visible .structure-video-thumb {
+  transform: scale(1.03);
+}
+
+.structure-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 42, 74, .18) 0%, rgba(10, 42, 74, .08) 38%, rgba(10, 42, 74, .72) 100%);
+}
+
+.structure-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(74px, 8vw, 108px);
+  height: clamp(74px, 8vw, 108px);
+  border-radius: 50%;
+  background: rgba(255, 218, 31, .96);
+  color: var(--azul-escuro);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  box-shadow: 0 18px 36px rgba(0,0,0,.22);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.structure-video-player:hover .structure-video-play,
+.structure-video-player:focus-visible .structure-video-play {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 22px 40px rgba(0,0,0,.26);
+}
+
+.structure-video-caption {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  font-size: clamp(.95rem, 1.6vw, 1.1rem);
+  font-weight: 700;
+  text-align: left;
+  text-shadow: 0 2px 10px rgba(0,0,0,.28);
+}
+
+.structure-video-frame {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: none;
+}
+
 
 /* ---------- Responsivo ---------- */
 @media (min-width: 1921px) {
@@ -1354,6 +1491,16 @@ footer {
   .hero-content { max-width: 100%; }
   .hero-title { font-size: clamp(2rem, 8vw, 3.2rem); }
   .hero-desc { max-width: 62ch; }
+  .cta-banner-content {
+    max-width: 760px;
+    padding-inline: 12px;
+  }
+  .cta-banner-bg {
+    width: min(50vw, 420px);
+  }
+  .structure-video-wrap {
+    min-height: clamp(240px, 52vw, 560px);
+  }
   .hero-stats {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1413,6 +1560,22 @@ footer {
   .hero-cta .btn,
   .cta-banner-btns .btn,
   .btn-lg { width: 100%; }
+  .cta-banner-content {
+    max-width: 100%;
+    padding-inline: 0;
+  }
+  .cta-banner-bg {
+    width: 100%;
+  }
+  .cta-banner-bg::after {
+    background: rgba(30, 136, 229, .72);
+  }
+  .cta-banner-video {
+    opacity: .18;
+  }
+  .structure-video-wrap {
+    min-height: clamp(220px, 56vw, 420px);
+  }
   .hero-stats { grid-template-columns: 1fr; }
   .benefits-strip-inner {
     flex-direction: column;
@@ -1454,13 +1617,22 @@ footer {
   .brands-video-wrap {
     margin-top: 28px;
     border-radius: var(--radius-md);
-    aspect-ratio: 16 / 8.5;
+    overflow: hidden;
+  }
+  .structure-video-wrap {
+    margin-top: 28px;
+    border-radius: var(--radius-md);
+    min-height: clamp(210px, 58vw, 360px);
+  }
+  .structure-video-caption {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
   }
   .brands-video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    height: auto;
+    object-fit: contain;
   }
 }
 
@@ -1507,6 +1679,20 @@ footer {
   .brands-video-wrap {
     aspect-ratio: 16 / 10;
     min-height: 200px;
+  }
+  .structure-video-frame {
+    min-height: 0;
+  }
+  .structure-video-caption {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    font-size: .9rem;
+  }
+  .structure-video-play {
+    width: 72px;
+    height: 72px;
+    font-size: 1.2rem;
   }
   .whatsapp-float {
     width: 54px;
