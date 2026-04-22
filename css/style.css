@@ -644,6 +644,8 @@ a.navbar-logo {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 78%, transparent 100%);
 }
 .cta-banner-bg::after {
   content: '';
@@ -1566,13 +1568,29 @@ footer {
     padding-inline: 0;
   }
   .cta-banner-bg {
-    width: 100%;
+    width: min(78vw, 360px);
   }
   .cta-banner-bg::after {
     background: rgba(30, 136, 229, .72);
   }
   .cta-banner-video {
     opacity: .18;
+  }
+  .cta-banner-btns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .cta-banner-btns .btn {
+    min-width: 0;
+    min-height: 58px;
+    padding: 16px 20px;
+  }
+  .cta-banner-sub {
+    margin-bottom: 28px;
   }
   .structure-video-wrap {
     min-height: clamp(220px, 56vw, 420px);
@@ -1652,6 +1670,9 @@ footer {
   .section-subtitle { margin-bottom: 32px; }
   .btn { width: 100%; }
   .cta-banner { padding: 56px 0; }
+  .cta-banner-bg {
+    width: min(82vw, 300px);
+  }
   .feature-list-item,
   .culture-highlight-item,
   .contact-info-card {
