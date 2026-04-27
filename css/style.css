@@ -226,6 +226,32 @@ p, .section-subtitle, .hero-desc, .depo-text, .footer-desc, .blog-card-desc,
 .btn-lg { padding: 16px 38px; font-size: 1.05rem; }
 .btn-sm { padding: 9px 20px; font-size: .85rem; }
 
+/* ---------- Centralizacao de icones ---------- */
+.btn > i,
+.navbar-toggle > i,
+.logo-icon > i,
+.hero-icon-card > i,
+.cat-icon > i,
+.dif-icon > i,
+.contact-info-icon > i,
+.valor-icon > i,
+.beneficio-icon > i,
+.team-card-icon > i,
+.blog-card-img > i,
+.whatsapp-float > i,
+.scroll-top > i,
+.structure-video-play > i,
+.feature-list-item > div:first-child > i,
+.culture-highlight-item > div:first-child > i,
+.store-grid > div > div:first-child > div:first-child > i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+}
+
 /* ---------- Navbar ---------- */
 .navbar {
   position: fixed;
@@ -537,6 +563,7 @@ a.navbar-logo {
 
 /* ---------- Diferenciais ---------- */
 .diferenciais-bg { background: var(--cinza-bg); }
+.brands-section { background: var(--branco); }
 
 .dif-grid {
   display: grid;
@@ -609,7 +636,23 @@ a.navbar-logo {
   transition: all var(--transicao);
 }
 .depo-card:hover { transform: translateY(-4px); box-shadow: var(--sombra-media); }
-.depo-stars { color: #ffc107; font-size: .9rem; margin-bottom: 12px; }
+.depo-stars {
+  color: #ffc107;
+  font-size: .9rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.depo-stars > i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+}
 .depo-text {
   font-size: .9rem;
   color: var(--cinza-medio);
@@ -1342,7 +1385,7 @@ footer {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-  background: #000;
+  background: var(--branco);
   font-size: 0;
   line-height: 0;
 }
@@ -1352,6 +1395,7 @@ footer {
   height: auto;
   display: block;
   background: #dfe8f5;
+  clip-path: inset(2px 0 2px 0);
 }
 
 .structure-video-wrap {
@@ -1602,6 +1646,7 @@ footer {
     gap: 14px;
   }
   .benefit-item { justify-content: flex-start; text-align: left; }
+  .dif-icon { margin: 0 auto 18px; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .feature-list-item,
   .culture-highlight-item,
@@ -1634,12 +1679,15 @@ footer {
     margin-bottom: 0;
   }
   .brands-video-wrap {
-    margin-top: 28px;
-    border-radius: var(--radius-md);
+    width: 100vw;
+    max-width: none;
+    margin: 28px calc(50% - 50vw) 0;
+    border-radius: 0;
     overflow: hidden;
     aspect-ratio: auto;
-    min-height: 0;
-    background: transparent;
+    min-height: clamp(86px, 24vw, 124px);
+    background: var(--branco);
+    box-shadow: 0 12px 28px rgba(10,42,74,.12);
   }
   .structure-video-wrap {
     margin-top: 28px;
@@ -1652,9 +1700,13 @@ footer {
     bottom: 20px;
   }
   .brands-video {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+    width: 112%;
+    max-width: none;
+    height: clamp(86px, 24vw, 124px);
+    margin-left: -6%;
+    object-fit: cover;
+    object-position: center;
+    clip-path: inset(3px 0 3px 0);
   }
 }
 
@@ -1672,6 +1724,12 @@ footer {
   .cta-banner { padding: 56px 0; }
   .cta-banner-bg {
     width: min(82vw, 300px);
+  }
+  .contact-info-icon,
+  .feature-list-item > div:first-child,
+  .culture-highlight-item > div:first-child {
+    align-self: center;
+    margin-inline: auto;
   }
   .feature-list-item,
   .culture-highlight-item,
@@ -1702,9 +1760,14 @@ footer {
     max-height: 280px;
   }
   .brands-video-wrap {
-    aspect-ratio: auto;
-    min-height: 0;
-    background: transparent;
+    margin-top: 24px;
+    min-height: clamp(90px, 26vw, 118px);
+  }
+  .brands-video {
+    width: 118%;
+    height: clamp(90px, 26vw, 118px);
+    margin-left: -9%;
+    clip-path: inset(3px 0 3px 0);
   }
   .structure-video-frame {
     min-height: 0;
